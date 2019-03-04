@@ -1,23 +1,43 @@
-document.onkeyup = function() {guessLetter()};
+document.onkeyup = function () {
+    guessLetter()
+};
 
-var wordsMatrix = ["Planetoid","Bosson","Charm","Strange",
-        "Nova","Quark","Ultraviolet","Antimatter","Doppler",
-        "Lepton"];
+// WORDS-MATRIX>> This array contains all the words to guess.
+var wordsMatrix = ["Planetoid", "Bosson", "Charm", "Strange",
+    "Nova", "Quark", "Ultraviolet", "Antimatter", "Doppler",
+    "Lepton"
+];
 
-function greetings() {    
+function greetings() {
     console.log("Hi! Welcome to Cosmic Hangman")
-    };
+};
+// Start button on click callback function. It triggers the
+// "start function."
+document.getElementById("start-bttn").onclick = function () {
+    start()
+};
 
-document.getElementById("start-bttn").onclick = function(){start()};
-
-var chWord;
-var chWordArray = [];
-var chWordLetters;
-var guessWord = [];
-var guessWordToStr;
-var wrongLetters = [];
+var chWord; // CHOSEN-WORD>> Word from the matrix in Uppercase.
+var chWordArray = []; // CHOSEN-WORD-ARRAY>> Chosen word in
+// array format.
+var chWordLetter; // CHOSEN-WORD-LETTERS>> Any one of the
+// letters contained in the chWord. 
+var guessWord = []; // GUESSED-WORD>> Array composed by as 
+// many "?" as the chWord length.
+var guessWordToStr; // GUESSED-WORD-TO-STRING>> guessWord 
+// converted to a string so it can be shown in the document.
+var wrongLetters = []; // An array that will store all the pressed
+// keys that don't belong to the chWord.
+var wL; //wL = WORD-LENGHT>> Counter for looping through chWord
+// length.
+var pKCount; // PRESSED-KEY-COUNTER>> Diminishes its value each
+// time a key has been pressed.
+var rLetCount; // RIGHT-LETTER-COUNT>> A counter for
+// the letters that do belong to the chWord.
 
 function start() {
+    // rndNumber = RANDOM-NUMBER>> Is an operation that will
+    // randmoly choose a word from the wordsMatrix.
     var rndNumber = Math.floor(Math.random() * (10 - 0));
     // console.log(rndNumber);
     chWord = wordsMatrix[rndNumber].toUpperCase();
@@ -25,50 +45,84 @@ function start() {
     guessWord = [];
     chWordArray = [];
 
-    for (var wL = 0; wL < chWord.length; wL++) {
+    for (wL = 0; wL < chWord.length; wL++) {
         guessWord.push("?");
-        chWordLetters = chWord.charAt(wL);
-        chWordArray.push(chWordLetters);
+        chWordLetter = chWord.charAt(wL);
+        chWordArray.push(chWordLetter);
     };
-    
+
     guessWordToStr = guessWord.join("-");
-    console.log(chWord.length);
+    // console.log(chWord.length);
     // console.log(guessWordToStr);
     // console.log(chWordArray.length);
-    document.getElementById("word").innerHTML = guessWordToStr;
+    document.getElementById("word").innerHTML = ">> " + guessWordToStr + " <<";
     wrongLetters = [];
+    document.getElementById("pressedKeys").value = wrongLetters.join("-");
+    pkCount = 5;
+    // rLetCount = RIGHT-LETTER-COUNT>> A counter for
+    // the letters that do belong to the chWord.
+    rLetCount = 0;
 };
 
 function guessLetter() {
+    // pressedKey = PRESSED-KEY>> Stores the keybord key pressed
+    // in uppercase.
     var pressedKey = event.key.toUpperCase();
-    console.log(pressedKey);
+    // console.log(pressedKey);
+    // rightLetter = RIGHT-LETTER>> Stores the pressed key when
+    // it does exist in the chWord.
     var rightLetter;
-    var CheckLetters;
-    for (var gWordL = 0; gWordL < chWordArray.length; gWordL++) {
-        chWordLetters = chWordArray[gWordL];
-        console.log(chWordLetters);
-        if (pressedKey === chWordLetters) {
-            console.log("I went through Yes");
-            rightLetter = gWordL;
+    // checkLetter = CHECKED-LETTER>> A boolean var that will 
+    // test whether the pressed key exists somewhere in the
+    // chWord. 
+    var checkLetter;
+
+    for (wL = 0; wL < chWord.length; wL++) {
+        chWordLetter = chWordArray[wL];
+        // console.log(chWordLetter);
+        if (pressedKey === chWordLetter) {
+            // console.log("I went through Yes");
+            rightLetter = wL;
             guessWord[rightLetter] = pressedKey;
+            guessWordToStr = guessWord.join("-");
             // console.log("Yes! There is an " + pressedKey);
             // console.log("Its index is " + rightLetter);
             // console.log(guessWord);
-            document.getElementById("word").innerHTML = guessWord;
+            document.getElementById("word").innerHTML = ">> " + guessWordToStr + " <<";
+            rLetCoun = rLetCount++;
+            // console.log(rLetCount);
+            if (rLetCount === chWord.length) {
+                console.log("Congrats!!! You've guessed it!!")
+                document.getElementById("word").innerHTML = ">> Congrats!!! You've guessed it!! <<";
+                GameOver();
+            };
         } else {
-            CheckLetters = chWordArray.includes(pressedKey);
-            console.log("I went through No");
-            if (CheckLetters === true) {
-                console.log("It is part of the word.");
-            } else {
-                CheckLetters = wrongLetters.includes(pressedKey);
-                if (CheckLetters === true) {
-                    console.log("It is already included.");
-                } else {       
+            checkLetter = chWordArray.includes(pressedKey);
+            // console.log("I went through No");
+            if (checkLetter === false) {
+                checkLetter = wrongLetters.includes(pressedKey);
+                if (checkLetter === false) {
                     wrongLetters.push(pressedKey);
                     document.getElementById("pressedKeys").value = wrongLetters.join("-");
+                    pkCount--;
+                    console.log(pkCount);
+                    if (pkCount < 0) {
+                        console.log("You have lost!");
+                        document.getElementById("word").innerHTML = ">> You have lost!! )= <<";
+                        GameOver();
+                    };
                 };
             };
         };
     };
 };
+
+function GameOver() {
+    chWord = "";
+    chWordArray = [];
+    chWordLetter = "";
+    guessWord = [];
+    guessWordToStr = "";
+    wrongLetters = [];
+    // document.getElementById("word").innerHTML = ">> <<";
+} 
