@@ -1,25 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Link to Bootstrap Content Dynamic Netowrk. -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <!-- Link to CSS file. -->
-    <link rel="stylesheet" media="scren" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <title>Cosmic Hangman</title>
 </head>
+
 <body>
-    <h1>Press any key to get started!</h1>
-    <button id="start-bttn">Press to play</button>
-    <h2>You will be guessing a word.</h2>
-    <h2>Think of cosmic elements to figure out that word.</h2>
-    <h2>Press the button to start guessing...</h2>
-    <h3 id="word"></h3>
-    <br>
-    <textarea Id="pressedKeys" disabled></textarea>
+    <div id="gameOver" class="jumbotron">
+        <h1 id="winLose" class="display-4">You won!!/You lost!!</h1>
+        <br>
+        <br>
+        <p id="gOMess" class="lead">Text heree</p>
+        <br>
+        <br>
+        <a id="learnMore" class="btn btn-primary btn-lg" href="#" role="button" target="_blank">LEARN MORE</a>
+        <a id="goBack" class="btn btn-primary btn-lg" href="#" role="button">GO BACK</a>
+    </div>
+    <div class="container">
+        <div class="row backPic-container">
+            <div id="audioControl">
+                <audio controls loop id="backSong">
+                    <source src="assets/sounds/Patlabor - With love.wav" type="audio/mpeg">
+                </audio>
+            </div>
+            <img id="backPic" src="assets/images/backPic.jpeg">
+        </div>
+        <div class="row game-tag">
+            <div class="col col-xl-4 col-lg-4 col-md-3 col-sm-2 col-1"></div>
+            <div class="col indicators col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 black-container">
+                <button id="start-bttn" class="btn btn-light startTag">
+                    <h4>COSMIC HANGMAN</h4><br>
+                    <h6>Press to (re)start</h6>
+                </button>
+                <button id="inst-bttn" class="btn btn-light startTag shwHid">
+                    <p class="instructions">You will be guessing a word. Think of cosmic elements to figure out that
+                        word.<br>
+                        Once the hidden word appears in the<br> <b>G-U-E-S-S-W-O-R-D</b><br> section, guess what
+                        letters it is composed by.<br>
+                        You will have up until 10 chances to press a letter that is not contained in the word.
+                        <br>
+                        <br>
+                        <h6>PRESS WHEN READY</h6><br>
+                    </p>
+                </button>
+            </div>
+            <div class="col col-xl-4 col-lg-4 col-md-3 col-sm-2 col-1"></div>
+        </div>
+
+        <div class="row game-container-1">
+            <div class="col col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12"></div>
+            <div class="col indicators col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                <div id="winsTag" class="wlTag shwHid">
+                    <h5><span id="wins" class="badge badge-winsTab">WINS<br></span></h5>
+                </div>
+                <div id="loseTag" class="wlTag shwHid">
+                    <h5><span id="losses" class="badge badge-loseTab">LOSSES<br></span></h5>
+                </div>
+            </div>
+        </div>
+        <div class="row game-container-2">
+            <div class="col indicators col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                <div id="guessWordBox" class="guWordBox shwHid">
+                    <h1><span Id="word" class="badge badge-guessWord">G-U-E-S-S W-O-R-D</span> </h1>
+                </div>
+                <!-- <h1 id="word">ASDFSADF</h1>
+                <br> -->
+            </div>
+            <div class="col indicators col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12">
+                <div id="wrongCharTag" class="wrChar shwHid">
+                    <h4><span id="wrCharCounter" class="badge badge-wrCharTab">WRONG CHARACTERS (10):<br></span> </h4>
+                </div>
+            </div>
+        </div>
+        <!-- <textarea Id="pressedKeys" disabled></textarea> -->
+
+        <div class="row game-container-3">
+            <div class="col col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12"></div>
+            <div class="col indicators col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div id="wrongCharBox" class="wrChar shwHid">
+                    <h4><span Id="pressedKeys" class="badge badge-wrCharBox"><br></span> </h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- FIRST STEP  ================================ -->
     <!-- Create an array of words the game will choose
@@ -27,7 +99,7 @@
     <!-- Create a button to start (or reload) a new game -->
     <!-- Select a word.
         Know its length.
-        Add as many "?" as the chosen word length. --> 
+        Add as many "?" as the chosen word length. -->
     <!-- **The word will be converted to Uppercase. -->
     <!-- ============================================ -->
 
@@ -37,7 +109,7 @@
     contained, create an array an push the letters contained 
     in the randomly selected word. -->
     <!-- Loop through the array and show the keys if found 
-    within the guessed word. --> 
+    within the guessed word. -->
     <!-- **The key pressed will be converted to Uppercase. -->
     <!-- ============================================ -->
 
@@ -67,4 +139,5 @@
     <!-- Link to Javascript file -->
     <script src="assets/javascript/game.js"></script>
 </body>
+
 </html>

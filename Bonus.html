@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Link to Bootstrap Content Dynamic Netowrk. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Link to CSS file. -->
+    <link rel="stylesheet" media="scren" type="text/css" href="assets/css/style.css">
+    <title>Cosmic Hangman</title>
+</head>
+<body>
+    <h1>Press any key to get started!</h1>
+    <button id="start-bttn">Press to play</button>
+    <h2>You will be guessing a word.</h2>
+    <h2>Think of cosmic elements to figure out that word.</h2>
+    <h2>Press the button to start guessing...</h2>
+    <h3 id="word"></h3>
+    <br>
+    <textarea Id="pressedKeys" disabled></textarea>
+
+    <!-- FIRST STEP  ================================ -->
+    <!-- Create an array of words the game will choose
+    from to use at the game. -->
+    <!-- Create a button to start (or reload) a new game -->
+    <!-- Select a word.
+        Know its length.
+        Add as many "?" as the chosen word length. --> 
+    <!-- **The word will be converted to Uppercase. -->
+    <!-- ============================================ -->
+
+    <!-- SECOND STEP  =============================== -->
+    <!-- Create a textarea to show the pressed keys within. -->
+    <!-- To compare the typed keys with the letters
+    contained, create an array an push the letters contained 
+    in the randomly selected word. -->
+    <!-- Loop through the array and show the keys if found 
+    within the guessed word. --> 
+    <!-- **The key pressed will be converted to Uppercase. -->
+    <!-- ============================================ -->
+
+    <!-- THIRD STEP  ================================ -->
+    <!-- If found, add the letter to its correspondant
+    position on HTML. -->
+    <!-- For that purpuse, the letters index will be 
+    retrieved to push it into the "?Array". -->
+    <!-- ============================================ -->
+
+    <!-- FORTH STEP  ================================ -->
+    <!-- If not found, the pressed key will be shown at
+    the text area without repeating not included keys. -->
+    <!-- ============================================ -->
+
+    <!-- FIFTH STEP  ================================ -->
+    <!-- Create a counter for for pressed key events. -->
+    <!-- Call a GameOver funtion when that counter reaches
+    certain limit. -->
+    <!-- Create a counter for for when the word is guessed. -->
+    <!-- ============================================ -->
+
+    <!-- SIXTH STEP  ================================ -->
+    <!-- Keep the user from typing anything on the textarea. -->
+    <!-- ============================================ -->
+
+    <!-- Link to Javascript file -->
+    <script src="assets/javascript/game.1.js"></script>
+</body>
+</html>

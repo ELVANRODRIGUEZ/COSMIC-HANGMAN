@@ -1,0 +1,146 @@
+body {
+    color: white;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+
+}
+
+h1 {
+    font-size: 28pt;
+
+}
+
+h1, h2, h3 {
+    margin: 0px;
+
+}
+
+#audioControl  {
+    position: fixed;
+    top:0px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: .25;
+    
+}
+
+#gameOver {
+    position: fixed;
+    top:0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background-color: rgb(8, 14, 24); 
+    width: 65%;  
+    min-width: 348px; 
+    filter: drop-shadow(0 0 20px rgb(153, 153, 153));
+    visibility: hidden;
+}
+
+audio {
+    height: 25px;
+    
+}
+
+#audioControl:hover {
+    opacity: .75;
+    height: 25px;
+}
+
+.container {
+    max-width: 92%;
+    height: 100%;
+    min-width: 448px;
+
+}
+
+.backPic-container {
+    height: 40%;
+    margin:0;
+
+}
+
+#backPic {
+    width: 100%;
+    height: 45vh;
+
+}
+
+#start-bttn, #inst-bttn {
+    filter: drop-shadow(0 0 20px rgb(153, 153, 153));
+
+}
+
+.shwHid   {
+    display: none;
+}
+
+.show {
+    display: block;
+
+}
+
+.btn p {
+    font-size: 10pt;
+    margin: 0;
+}
+
+h5,h4,h3,h2,h1  .wlTag, .wrCharTag {
+    display:inline-block;
+    margin:5px;
+
+}
+
+.indicators {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.badge-tag {
+    padding:0px !important;
+    font-weight: bolder !important;
+
+}
+
+.badge-wrCharBox  {
+    color:black;
+    background-color: white !important;
+    margin: 15px;
+
+}
+
+.badge-guessWord {
+    background-color: rgb(58, 58, 58) !important;
+    opacity: .65;
+
+}
+
+.guWordBox {
+    margin: 15px;
+
+}
+
+.startTag {
+    top:-53px;
+    position: relative;
+ 
+}
+
+.badge {
+    padding: 15px;
+
+}
+
+.badge-winsTab, .badge-loseTab, .badge-wrCharTab {
+    background-color:#3c4f6f;
+
+}
+
+.game-container-3 {
+    display: flex;
+    flex-wrap: wrap;
+
+}
