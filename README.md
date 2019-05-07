@@ -1,7 +1,5 @@
-On this project a "Hangman" game will be created. The topic
-will be "Words of Outer Sapace". It will ask the user to
-guess words related to concepts of the cosmos.
-It will start at any key pressed and the instructions will be
-at reach for the user to figure out how to play. 
-I will be developing this excercise for a school project 
-over the next week.
+# **YOU IN THE UNIVERSE**
+
+**DESCRIPTION**
+
+This project is a simple Hangman game with cosmic motives. User is given an Astrophysics related word to guess. Word's number of letters will be the only initial hint at a hand. There is a wrong letter input limit after which the user will lose the game. There is also tracking for won and lost games.
